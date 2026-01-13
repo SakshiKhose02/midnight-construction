@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Quotation - Midnight Constructions & Interiors</title>
+  <meta name="description" content="Request a free quotation for your construction or interior design project">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/p1_style.css">
+  <link rel="stylesheet" href="../css/get-quotation.css">
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader">
+  <div class="loader-content">
+    <div class="worker-digger">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="25" r="8" fill="#8bb58f"/>
+        <rect x="42" y="35" width="16" height="25" fill="#ff6b35" rx="2"/>
+        <line x1="42" y1="40" x2="30" y2="50" stroke="#8bb58f" stroke-width="3"/>
+        <line x1="58" y1="40" x2="70" y2="50" stroke="#8bb58f" stroke-width="3"/>
+        <line x1="70" y1="48" x2="80" y2="38" stroke="#333" stroke-width="2.5"/>
+        <path d="M 80 35 L 85 40 L 80 45 Z" fill="#333"/>
+      </svg>
+    </div>
+    <div class="loader-text">Getting Your Quote Ready</div>
+    <div class="loader-subtext">Loading...</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header fixed-top">
+  <a href="#" class="logo">
+    <i class="fas fa-hammer"></i> Midnight
+  </a>
+  <nav>
+    <ul>
+      <li><a href="../html/d1.html#home">home</a></li>
+      <li><a href="../html/d1.html#about">about</a></li>
+      <li><a href="../html/d1.html#service">services</a></li>
+      <li><a href="../html/d1.html#project">projects</a></li>
+      <li><a href="../html/d1.html#contact">contact</a></li>
+      <li><a href="get-quotation.html" class="active">quotation</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main style="margin-top: 80px;">
+
+  <!-- HERO SECTION -->
+  <section class="quotation-hero">
+    <div class="quotation-hero__content">
+      <h1 class="quotation-hero__title" data-anim="zoom-in">Get Your Free Quotation</h1>
+      <p class="quotation-hero__subtitle" data-anim="slide-right">Tell us about your project and receive a personalized quote within 24 hours</p>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="quotation-section" data-anim="fade-in">
+    <div class="quotation-container">
+      <!-- Progress Indicator -->
+      <div class="progress-indicator">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="progress-step active" data-step="1">
+            <span>1</span>
+            <p>Project</p>
+          </div>
+          <div class="progress-step" data-step="2">
+            <span>2</span>
+            <p>Budget</p>
+          </div>
+          <div class="progress-step" data-step="3">
+            <span>3</span>
+            <p>Plans</p>
+          </div>
+          <div class="progress-step" data-step="4">
+            <span>4</span>
+            <p>Timeline</p>
+          </div>
+          <div class="progress-step" data-step="5">
+            <span>5</span>
+            <p>Details</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUOTATION FORM -->
+      <form id="quotationForm" class="quotation-form" novalidate>
+        
+        <!-- STEP 1: PROJECT TYPE -->
+        <fieldset class="form-section active" data-section="1">
+          <legend class="form-section__title">
+            <i class="fas fa-building"></i> Project Type
+          </legend>
+          <p class="form-section__subtitle">What type of project are you planning?</p>
+          
+          <div class="form-group">
+            <label for="projectType" class="form-label">Select Your Project Type</label>
+            <select id="projectType" name="projectType" required class="form-control">
+              <option value="">-- Choose Project Type --</option>
+              <option value="Independent House">Independent House</option>
+              <option value="Villa">Villa</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Interior Renovation">Interior Renovation</option>
+              <option value="Commercial Space">Commercial Space</option>
+            </select>
+            <span class="form-error" id="projectTypeError"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-next" data-next="2">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </fieldset>
+
+        <!-- STEP 2: BUDGET -->
+        <fieldset class="form-section" data-section="2">
+          <legend class="form-section__title">
+            <i class="fas fa-money-bill-wave"></i> Estimated Budget
+          </legend>
+          <p class="form-section__subtitle">What is your estimated budget?</p>
+          
+          <div class="form-group">
+            <div class="budget-display">
+              <span class="budget-currency">₹</span>
+              <span class="budget-value" id="budgetValue">50,00,000</span>
+            </div>
+            
+            <input 
+              type="range" 
+              id="budget" 
+              name="budget"
+              min="500000" 
+              max="20000000" 
+              step="50000"
+              value="5000000"
+              class="budget-slider"
+              required
+            >
+            
+            <div class="budget-labels">
+              <span>₹50 Lakhs</span>
+              <span>₹2 Crores</span>
+            </div>
+            <span class="form-error" id="budgetError"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-prev" data-prev="1"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn-next" data-next="3">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </fieldset>
+
+        <!-- STEP 3: ARCHITECTURAL PLANS -->
+        <fieldset class="form-section" data-section="3">
+          <legend class="form-section__title">
+            <i class="fas fa-file-alt"></i> Architectural Plans
+          </legend>
+          <p class="form-section__subtitle">Do you already have architectural plans or drawings?</p>
+          
+          <div class="form-group">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="hasPlans" value="yes" class="radio-input">
+                <span class="radio-checkmark"></span>
+                <span class="radio-text">Yes, I have plans</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hasPlans" value="no" class="radio-input" checked>
+                <span class="radio-checkmark"></span>
+                <span class="radio-text">No, I need help with plans</span>
+              </label>
+            </div>
+            <span class="form-error" id="hasPlansError"></span>
+          </div>
+
+          <!-- Conditional File Upload -->
+          <div id="fileUploadSection" class="form-group hidden" style="display: none;">
+            <label for="planFile" class="form-label">Upload Your Plans</label>
+            <div class="file-upload-wrapper">
+              <input 
+                type="file" 
+                id="planFile" 
+                name="planFile"
+                accept=".pdf,.jpg,.jpeg,.png"
+                class="file-input"
+              >
+              <label for="planFile" class="file-upload-label">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Click to upload or drag and drop</span>
+                <small>PDF, JPG, PNG up to 10MB</small>
+              </label>
+              <div class="file-name" id="fileName"></div>
+            </div>
+            <span class="form-error" id="fileError"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-prev" data-prev="2"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn-next" data-next="4">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </fieldset>
+
+        <!-- STEP 4: PROJECT START DATE -->
+        <fieldset class="form-section" data-section="4">
+          <legend class="form-section__title">
+            <i class="fas fa-calendar-alt"></i> Project Timeline
+          </legend>
+          <p class="form-section__subtitle">When do you plan to start the project?</p>
+          
+          <div class="form-group">
+            <label for="startDate" class="form-label">Project Start Date</label>
+            <input 
+              type="date" 
+              id="startDate" 
+              name="startDate"
+              class="form-control"
+              required
+            >
+            <span class="form-error" id="startDateError"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-prev" data-prev="3"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn-next" data-next="5">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </fieldset>
+
+        <!-- STEP 5: CONTACT & CONSULTATION -->
+        <fieldset class="form-section" data-section="5">
+          <legend class="form-section__title">
+            <i class="fas fa-phone"></i> Your Details
+          </legend>
+          <p class="form-section__subtitle">Help us get in touch with you</p>
+          
+          <div class="form-group">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input 
+              type="text" 
+              id="fullName" 
+              name="fullName"
+              placeholder="Your full name"
+              class="form-control"
+              required
+            >
+            <span class="form-error" id="fullNameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              placeholder="your@email.com"
+              class="form-control"
+              required
+            >
+            <span class="form-error" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone"
+              placeholder="+91 9876543210"
+              class="form-control"
+              required
+            >
+            <span class="form-error" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="city" class="form-label">City</label>
+            <input 
+              type="text" 
+              id="city" 
+              name="city"
+              placeholder="Your city"
+              class="form-control"
+              required
+            >
+            <span class="form-error" id="cityError"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                id="consultation" 
+                name="consultation"
+                value="yes"
+                class="checkbox-input"
+              >
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-text">Yes, I want a free consultation call</span>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-prev" data-prev="4"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="submit" class="btn-submit" id="submitBtn" disabled>
+              <span>Get My Quotation</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- SUCCESS MODAL -->
+<div class="success-modal" id="successModal">
+  <div class="success-modal__overlay"></div>
+  <div class="success-modal__content">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>Request Received!</h2>
+    <p>Thank you for your quotation request. We've received your details and will send you a personalized quote within 24 hours.</p>
+    <div class="success-details">
+      <p><strong>What's next:</strong></p>
+      <ul>
+        <li>Check your email for confirmation</li>
+        <li>Our team will review your requirements</li>
+        <li>Receive your detailed quotation</li>
+        <li>Schedule a free consultation if requested</li>
+      </ul>
+    </div>
+    <button class="btn-close-modal" id="closeModal">Back to Home</button>
+  </div>
+</div>
+
+<!-- ERROR MODAL -->
+<div class="error-modal" id="errorModal">
+  <div class="error-modal__overlay"></div>
+  <div class="error-modal__content">
+    <div class="error-icon">
+      <i class="fas fa-exclamation-circle"></i>
+    </div>
+    <h2>Something Went Wrong</h2>
+    <p id="errorMessage">We couldn't process your request. Please try again.</p>
+    <button class="btn-retry" id="retryBtn">Try Again</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>Midnight</h2>
+        <p>Building dreams, one project at a time.</p>
+      </div>
+      <div class="col-md-3">
+        <h2>Quick Links</h2>
+        <div class="list">
+          <a href="../html/d1.html">Home</a>
+          <a href="../html/d1.html#service">Services</a>
+          <a href="../html/d1.html#project">Projects</a>
+          <a href="get-quotation.html">Get Quotation</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2>Follow Us</h2>
+        <div class="list">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+          <a href="#">Pinterest</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2>Contact</h2>
+        <p>Email: quotation@midnight.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="../js/main.js" defer></script>
+<script src="../js/get-quotation.js" defer></script>
+
+</body>
+</html>

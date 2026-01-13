@@ -1,0 +1,6 @@
+<DOCTYPE html>
+<html>
+<body>
+<img src="E://javascript//6th unit//fruits.jpg"alt="custom_image_banner"style="width:100%">
+</body>
+</html>
