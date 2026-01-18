@@ -1,53 +1,81 @@
 # Midnight Construction & Interiors - Modern Website
 
-A modern, responsive website for Midnight Construction & Interiors with an integrated quotation request system. Built with vanilla HTML, CSS, and JavaScript (no frameworks).
+A modern, responsive website for Midnight Construction & Interiors with **MySQL database integration** for quotation management and a complete admin dashboard.
+
+## 🚀 Quick Start
+
+**New to this project? Read the [Complete Setup Guide](SETUP_GUIDE.md)** - Simple instructions in 5 minutes!
+
+**For Pull Request:** See [Creating a Pull Request](SETUP_GUIDE.md#-creating-a-pull-request-for-forked-repo) section in the setup guide.
+
+---
 
 ## 🎨 Features
 
-### Modern UI Design
-- ✨ 3D gradient effects and smooth animations
-- 🎬 Page loader with animated worker SVG
-- 📱 Fully responsive design (mobile, tablet, desktop)
-- 🎯 Smooth scroll animations and lazy loading
-- 🎨 Professional color scheme (Green, Orange, Navy)
+### Customer Side
+- ✨ Multi-step quotation form (5 steps with progress tracking)
+- 💰 Budget slider with live INR formatting (₹50L to ₹2Cr)
+- 📄 File upload for architectural plans (PDF, JPG, PNG, max 10MB)
+- 📅 Date picker with validation
+- ✅ Real-time form validation
+- 🎉 Success/error feedback modals
+- 📱 Fully responsive design
+- 🚀 **PHP backend with MySQL database**
 
-### Get Quotation Feature
-- 📋 **Multi-step form** (5 sections with progress indicator)
-- 💰 **Budget slider** with live INR formatting (₹50L to ₹2Cr)
-- 📄 **File upload** for architectural plans (PDF, JPG, PNG)
-- 📅 **Date picker** with future date validation
-- ✅ **Real-time validation** for all form fields
-- 📞 **Contact collection** (name, email, phone, city)
-- 📧 **Google Forms integration** for data submission
-- 🎉 **Success/Error modals** with user feedback
+### Admin Dashboard
+- 🔐 Secure login system
+- 📊 Statistics dashboard (total, pending, contacted quotations, budget)
+- 📋 Complete quotation management
+- 🔍 Search & filter capabilities
+- 📝 Status tracking (pending → contacted → quoted → completed)
+- 💬 Notes system for each quotation
+- 📥 File download support
+- 📄 Pagination for large datasets
+- 📱 Mobile-responsive admin interface
 
 ### Technical Features
-- ⚡ Vanilla JavaScript (ES6+, no jQuery/frameworks)
-- 🔒 Client-side form validation
-- 📤 Drag-and-drop file upload support
-- 🎨 CSS3 animations and transitions
-- 📊 Form state management
-- 💾 LocalStorage fallback for submissions
-- ♿ Semantic HTML for accessibility
+- ⚡ PHP 7.4+ backend with PDO
+- 🔒 SQL injection & XSS protection
+- 🔐 Bcrypt password hashing
+- 📤 Secure file upload handling
+- 🎨 Modern CSS3 animations
+- 📊 RESTful API design
+- 💾 MySQL database with proper schema
 
 ## 📁 Project Structure
 
 ```
 midnight-construction/
-├── README.md                          # This file
+├── README.md                          # Project overview
+├── .htaccess                         # Apache configuration
+├── database/
+│   └── setup.sql                     # Database schema & tables
+├── php/
+│   ├── config.php                    # Database configuration
+│   ├── submit-quotation.php          # Form submission handler
+│   ├── admin-api.php                 # Admin dashboard API
+│   ├── setup.php                     # Setup wizard
+│   ├── uploads/                      # Uploaded files
+│   └── logs/                         # Error logs
 ├── docs/
-│   ├── GET_QUOTATION_SETUP.md        # Google Forms setup guide
-│   ├── projectinfo.txt               # Project information
-│   └── banner.txt                    # Banner text
+│   ├── DATABASE_SETUP.md             # Complete setup guide
+│   ├── QUICKSTART.md                 # 5-minute quick start
+│   ├── TESTING.md                    # Testing checklist
+│   ├── PROJECT_SUMMARY.md            # Project overview
+│   └── GET_QUOTATION_SETUP.md        # Original form docs
 ├── html/
 │   ├── d1.html                       # Main landing page
-│   ├── p1.html                       # Services page
-│   ├── d1 - Copy.html               # Copy of d1.html
-│   └── get-quotation.html           # Quotation request form
+│   ├── get-quotation.html            # Quotation request form
+│   └── admin-dashboard.html          # Admin dashboard
 ├── css/
-│   ├── p1_style.css                 # Main styles & animations
-│   └── get-quotation.css            # Quotation form styles
+│   ├── p1_style.css                  # Main styles
+│   ├── get-quotation.css             # Quotation form styles
+│   └── admin-dashboard.css           # Admin dashboard styles
 ├── js/
+│   ├── main.js                       # Main site JavaScript
+│   ├── get-quotation.js              # Quotation form logic
+│   └── admin-dashboard.js            # Admin dashboard logic
+└── images/                            # Image assets
 │   ├── main.js                      # Main scripts & interactions
 │   └── get-quotation.js             # Quotation form logic
 ├── images/                           # Project images
