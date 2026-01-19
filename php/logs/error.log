@@ -1,0 +1,60 @@
+[19-Jan-2026 02:23:52 Asia/Kolkata] Database Connection Error: SQLSTATE[HY000] [1049] Unknown database 'midnight_construction'
+[19-Jan-2026 02:23:52 Asia/Kolkata] Admin API Error: Database connection failed. Please try again later.
+[19-Jan-2026 02:23:54 Asia/Kolkata] Database Connection Error: SQLSTATE[HY000] [1049] Unknown database 'midnight_construction'
+[19-Jan-2026 02:23:54 Asia/Kolkata] Admin API Error: Database connection failed. Please try again later.
+[19-Jan-2026 02:24:14 Asia/Kolkata] Database Connection Error: SQLSTATE[HY000] [1049] Unknown database 'midnight_construction'
+[19-Jan-2026 02:24:14 Asia/Kolkata] Admin API Error: Database connection failed. Please try again later.
+[19-Jan-2026 02:34:53 Asia/Kolkata] Quotation Validation Error: Project type is required, Full name is required, Valid email is required, Phone number is required, City is required
+[19-Jan-2026 02:34:53 Asia/Kolkata] POST Data: Array
+(
+    [projectType] => 
+    [budget] => 5000000
+    [hasPlans] => no
+    [startDate] => 
+    [fullName] => 
+    [email] => 
+    [phone] => 
+    [city] => 
+    [consultation] => false
+)
+
+[19-Jan-2026 02:34:55 Asia/Kolkata] Quotation Validation Error: Project type is required, Full name is required, Valid email is required, Phone number is required, City is required
+[19-Jan-2026 02:34:55 Asia/Kolkata] POST Data: Array
+(
+    [projectType] => 
+    [budget] => 5000000
+    [hasPlans] => no
+    [startDate] => 
+    [fullName] => 
+    [email] => 
+    [phone] => 
+    [city] => 
+    [consultation] => false
+)
+
+[19-Jan-2026 02:35:04 Asia/Kolkata] Quotation Validation Error: Project type is required, Full name is required, Valid email is required, Phone number is required, City is required
+[19-Jan-2026 02:35:04 Asia/Kolkata] POST Data: Array
+(
+    [projectType] => 
+    [budget] => 5000000
+    [hasPlans] => no
+    [startDate] => 
+    [fullName] => 
+    [email] => 
+    [phone] => 
+    [city] => 
+    [consultation] => false
+)
+
+[19-Jan-2026 02:38:35 Asia/Kolkata] Login attempt - Username: admin
+[19-Jan-2026 02:38:35 Asia/Kolkata] Login attempt - Password provided: yes
+[19-Jan-2026 02:38:35 Asia/Kolkata] User found - Verifying password...
+[19-Jan-2026 02:38:35 Asia/Kolkata] Login failed - Password verification failed for user: admin
+[19-Jan-2026 02:39:28 Asia/Kolkata] Login attempt - Username: admin
+[19-Jan-2026 02:39:28 Asia/Kolkata] Login attempt - Password provided: yes
+[19-Jan-2026 02:39:28 Asia/Kolkata] User found - Verifying password...
+[19-Jan-2026 02:39:28 Asia/Kolkata] Login failed - Password verification failed for user: admin
+[19-Jan-2026 02:40:04 Asia/Kolkata] Login attempt - Username: admin
+[19-Jan-2026 02:40:04 Asia/Kolkata] Login attempt - Password provided: yes
+[19-Jan-2026 02:40:04 Asia/Kolkata] User found - Verifying password...
+[19-Jan-2026 02:40:04 Asia/Kolkata] Login successful for user: admin

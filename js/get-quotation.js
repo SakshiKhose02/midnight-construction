@@ -14,23 +14,8 @@
   'use strict';
 
   // ==================== CONFIGURATION ====================
-  // Google Form endpoint - Replace with your Google Forms URL
-  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
-  
-  // Map form fields to Google Form entry IDs
-  // You need to inspect your Google Form to find these IDs
-  const FORM_ENTRIES = {
-    projectType: 'entry.1234567890',      // Update with actual entry ID
-    budget: 'entry.0987654321',           // Update with actual entry ID
-    hasPlans: 'entry.1111111111',         // Update with actual entry ID
-    planFile: 'entry.2222222222',         // Note: File upload may need special handling
-    startDate: 'entry.3333333333',        // Update with actual entry ID
-    fullName: 'entry.4444444444',         // Update with actual entry ID
-    email: 'entry.5555555555',            // Update with actual entry ID
-    phone: 'entry.6666666666',            // Update with actual entry ID
-    city: 'entry.7777777777',             // Update with actual entry ID
-    consultation: 'entry.8888888888'      // Update with actual entry ID
-  };
+  // PHP Backend endpoint
+  const SUBMIT_URL = '../php/submit-quotation.php';
 
   // ==================== STATE MANAGEMENT ====================
   const formState = {
@@ -483,85 +468,56 @@
 
   async function submitToGoogleForms() {
     /**
-     * GOOGLE FORMS INTEGRATION
-     * 
-     * Steps to set up:
-     * 1. Create a Google Form with the following fields:
-     *    - Project Type
-     *    - Estimated Budget (INR)
-     *    - Architectural Plans (Yes/No)
-     *    - Project Start Date
-     *    - Full Name
-     *    - Email
-     *    - Phone
-     *    - City
-     *    - Free Consultation
-     * 
-     * 2. Get the form ID from the URL:
-     *    https://docs.google.com/forms/d/YOUR_FORM_ID/edit
-     * 
-     * 3. Publish the form to get responses
-     * 
-     * 4. Inspect the form using browser DevTools to find entry IDs:
-     *    - Open the form
-     *    - Open DevTools (F12)
-     *    - Find input elements with name="entry.XXXXXXXXX"
-     *    - Replace the FORM_ENTRIES values with the correct entry IDs
-     * 
-     * 5. Replace GOOGLE_FORM_URL with your form's response URL
+     * PHP BACKEND SUBMISSION
+     * Submits form data to PHP backend with MySQL database storage
      */
+
+    // Capture current values from form fields before submitting
+    const formElement = elements.form;
+    formState.data.projectType = formElement.projectType?.value || '';
+    formState.data.fullName = formElement.fullName?.value || '';
+    formState.data.email = formElement.email?.value || '';
+    formState.data.phone = formElement.phone?.value || '';
+    formState.data.city = formElement.city?.value || '';
+    formState.data.startDate = formElement.startDate?.value || '';
+    formState.data.consultation = formElement.consultation?.checked || false;
 
     const formData = new FormData();
 
-    // Map form data to Google Form entry IDs
-    formData.append(FORM_ENTRIES.projectType, formState.data.projectType);
-    formData.append(FORM_ENTRIES.budget, formState.data.budget);
-    formData.append(FORM_ENTRIES.hasPlans, formState.data.hasPlans);
-    formData.append(FORM_ENTRIES.startDate, formState.data.startDate);
-    formData.append(FORM_ENTRIES.fullName, formState.data.fullName);
-    formData.append(FORM_ENTRIES.email, formState.data.email);
-    formData.append(FORM_ENTRIES.phone, formState.data.phone);
-    formData.append(FORM_ENTRIES.city, formState.data.city);
-    formData.append(FORM_ENTRIES.consultation, formState.data.consultation ? 'Yes' : 'No');
+    // Add form fields
+    formData.append('projectType', formState.data.projectType);
+    formData.append('budget', formState.data.budget);
+    formData.append('hasPlans', formState.data.hasPlans);
+    formData.append('startDate', formState.data.startDate);
+    formData.append('fullName', formState.data.fullName);
+    formData.append('email', formState.data.email);
+    formData.append('phone', formState.data.phone);
+    formData.append('city', formState.data.city);
+    formData.append('consultation', formState.data.consultation ? 'true' : 'false');
 
-    // Note: Google Forms doesn't support direct file uploads via API
-    // File handling would require a backend service
-    // For now, we send a note about the file
+    // Add file if present
     if (formState.data.planFile) {
-      formData.append(FORM_ENTRIES.planFile, `File: ${formState.data.planFile.name} (${formState.data.planFile.size} bytes)`);
+      formData.append('planFile', formState.data.planFile);
     }
 
-    const response = await fetch(GOOGLE_FORM_URL, {
+    // Debug: Log form data
+    console.log('Submitting form data:');
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    const response = await fetch(SUBMIT_URL, {
       method: 'POST',
-      body: formData,
-      mode: 'no-cors' // Google Forms requires this
+      body: formData
     });
 
-    // Google Forms returns 200 even on success with no-cors
-    // We treat all responses as success for demonstration
-    return response;
-  }
+    const result = await response.json();
+    
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || `HTTP error! status: ${response.status}`);
+    }
 
-  // Alternative: Submit via Email (requires backend)
-  // This is a fallback if Google Forms integration is not available
-  async function submitViaEmail() {
-    const emailData = {
-      projectType: formState.data.projectType,
-      budget: formState.data.budget,
-      hasPlans: formState.data.hasPlans,
-      startDate: formState.data.startDate,
-      fullName: formState.data.fullName,
-      email: formState.data.email,
-      phone: formState.data.phone,
-      city: formState.data.city,
-      consultation: formState.data.consultation,
-      timestamp: new Date().toISOString()
-    };
-
-    // This would require a backend endpoint
-    // Example: POST to /api/quotation
-    // For now, we store in localStorage as fallback
-    localStorage.setItem('lastQuotation', JSON.stringify(emailData));
+    return result;
   }
 
   function resetForm() {
